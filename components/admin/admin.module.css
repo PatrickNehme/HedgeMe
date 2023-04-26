@@ -1,0 +1,30 @@
+.sidebar {
+    transition: all 0.3s;
+  }
+  
+  .sidebar:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .sidebar-btn {
+    transition: all 0.3s;
+  }
+  
+  .sidebar-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .sidebar-btn:focus {
+    transform: scale(1.05);
+  }
+  
+  .separator {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 1rem 0;
+  }
+  
+  .logout-btn {
+    text-align: center;
+  }
+  
