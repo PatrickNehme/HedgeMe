@@ -28,9 +28,6 @@ export default async function handler(req, res) {
       const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
       res.status(200).json({ token });
-
-
-      res.status(200).json({ token });
     } else {
       res.setHeader('Allow', ['POST']);
       res.status(405).end(`Method ${req.method} Not Allowed`);
