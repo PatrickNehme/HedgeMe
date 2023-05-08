@@ -1,4 +1,3 @@
-// pages/api/admin/users/all-users.js
 import { connectToDb } from '../../../../db';
 import { User } from '../../../../models/User';
 import authMiddleware from '../../authMiddleware';

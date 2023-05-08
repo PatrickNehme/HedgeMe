@@ -5,7 +5,7 @@ import AccountInformation from '../../components/dashboard/AccountInformation';
 const AccountInformationPage = () => {
   return (
     <DashboardLayout>
-      <AccountInformation />
+        <h2>Account Information</h2>
     </DashboardLayout>
   );
 };

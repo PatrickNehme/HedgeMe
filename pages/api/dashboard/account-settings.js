@@ -1,18 +1,27 @@
-import { connectToDatabase } from '../../../db';
-import { hashPassword } from '../../../models/User';
+import { connectToDb } from '../../../db';
+import { User } from '../../../models/User';
 
 export default async (req, res) => {
-  const { email, newEmail, newPassword } = req.body;
+  const { currentEmail, newEmail, currentPassword } = req.body;
 
-  const { db } = await connectToDatabase();
+  const dbConnection = await connectToDb();
 
-  if (newEmail) {
-    await db.collection('users').updateOne({ email }, { $set: { email: newEmail } });
+  // Check if the email exists in the database
+  const existingUser = await dbConnection.collection('users').findOne({ email: currentEmail });
+  if (!existingUser) {
+    res.status(404).json({ message: 'User not found.' });
+    return;
   }
 
-  if (newPassword) {
-    const hashedPassword = await hashPassword(newPassword);
-    await db.collection('users').updateOne({ email }, { $set: { password: hashedPassword } });
+  const userModel = new User(dbConnection);
+  const isPasswordValid = await userModel.verifyPassword(currentPassword, existingUser.password);
+  if (!isPasswordValid) {
+    res.status(401).json({ message: 'Incorrect password.' });
+    return;
+  }
+
+  if (newEmail) {
+    await dbConnection.collection('users').updateOne({ email: currentEmail }, { $set: { email: newEmail } });
   }
 
   res.status(200).json({ message: 'Account settings updated successfully.' });

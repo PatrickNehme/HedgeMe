@@ -17,6 +17,12 @@ const AddTrade = () => {
   const [publisher, setPublisher] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+  const toUpperCase = (str) => {
+    return str.toUpperCase();
+  };
 
   const handleAddTrade = async (e) => {
     e.preventDefault();
@@ -25,16 +31,16 @@ const AddTrade = () => {
 
     try {
       await axios.post('/api/admin/trades/add', {
-        asset,
+        asset: toUpperCase(asset),
         type,
-        exchange,
+        exchange: capitalize(exchange),
         entryPrice,
         stopPrice,
         targetPrice,
         strategy,
         leverage,
         size,
-        publisher,
+        publisher: capitalize(publisher),
       });
 
       setSuccessMessage('Trade added successfully');

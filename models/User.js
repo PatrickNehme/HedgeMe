@@ -2,6 +2,7 @@ const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 
 class User {
+
   constructor(db) {
     this.db = db;
     this.users = this.db.collection('users');
@@ -10,6 +11,11 @@ class User {
 
   async verifyPassword(password, hashedPassword) {
     return await bcrypt.compare(password, hashedPassword);
+  }
+
+  async getUsersByRole(role) {
+    const users = await this.users.find({ role: role }).toArray();
+    return users;
   }
 
   async createUser(user) {
@@ -60,23 +66,25 @@ class User {
   }
 
   async createSupportTicket(ticket) {
-    const result = await this.supportTickets.insertOne(ticket);
-    if (result.acknowledged && result.insertedId) {
-      const createdTicket = await this.supportTickets.findOne({ _id: result.insertedId });
-      return createdTicket;
+    try {
+      const result = await this.supportTickets.insertOne(ticket);
+      if (result.acknowledged && result.insertedId) {
+        const createdTicket = await this.supportTickets.findOne({ _id: result.insertedId });
+        return createdTicket;
+      } else {
+        console.log('No support ticket document created:', result);
+      }
+    } catch (error) {
+      console.error('Error while creating support ticket:', error);
     }
     return null;
-  }
-
-  async getSupportTickets(userId) {
-    const tickets = await this.supportTickets.find({ userId: ObjectId(userId) }).toArray();
-    return tickets;
   }
 }
 
 async function hashPassword(password) {
   return await bcrypt.hash(password, 10);
 }
+
 
 module.exports = {
   User,

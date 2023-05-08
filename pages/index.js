@@ -3,14 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTelegram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faUser, faPen, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect } from 'react';
 import Parser from 'rss-parser';
 import useSWR from 'swr';
 import dynamic from 'next/dynamic';
-
-
-
-
 
 const teamMembers = [
   {
@@ -45,10 +42,51 @@ const teamMembers = [
 
 const News = dynamic(() => import('../components/home/News'), { ssr: false });
 
+const handleDownload = () => {
+  window.open('/HedgeMe_Proposal.pdf', '_blank'); // Replace with the relative path of your PDF file in the public directory
+};
+
+
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  
+  useEffect(() => {
+    const storedAlertMessage = localStorage.getItem('alertMessage');
+    if (storedAlertMessage) {
+      setAlertMessage(storedAlertMessage);
+      setShowAlert(true);
+    }
+  }, []);
+
+
+  
+
   return (
   <div className="bg-gray-100 min-h-screen">
+
+    {showAlert && (
+        <div className="bg-red-400 text-white px-4 py-3  shadow-md fixed w-full z-20 ">
+          <div className="container mx-auto flex items-center justify-between">
+            <div className="flex items-center">
+              <FontAwesomeIcon
+                icon={faExclamationCircle}
+                className="mr-2"
+              />
+              <p>{alertMessage}</p>
+            </div>
+            <button
+              onClick={() => setShowAlert(false)}
+              className="focus:outline-none text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )};
+
   
   <Head>
     <title>HedgeMe</title>
@@ -120,12 +158,16 @@ export default function Home() {
   <h1 className="text-2xl mb-4 header-gray">About Us</h1>
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
     <div>
-      <p className="text-gray-700 mb-4">HedgeMe is a leading cryptocurrency hedge fund company dedicated to providing...</p>
-      <p className="text-gray-700">We specialize in managing high-performing cryptocurrency portfolios for a diverse...</p>
-    </div>
+      <p className="text-gray-700 mb-4"> HedgeMe is a cutting-edge crypto hedge fund that specializes in comprehensive risk management, addressing the full spectrum of market volatility and platform risk in the rapidly evolving world of digital assets. <br />Our team of highly knowledgeable professionals combines expertise in trading, DeFi passive income strategies, and arbitrage to generate consistent profits across three core tiers: <b>Low Risk</b>, <b>Medium Risk</b>, and <b>High Risk</b>.<br /> By maintaining a balanced portfolio tailored to each investor's unique risk tolerance, HedgeMe delivers tailored financial solutions that optimize returns and safeguard investments in the dynamic and challenging cryptocurrency landscape. <br />Trust HedgeMe to navigate the complexities of the crypto market and secure your financial future with confidence.</p>    
+      <button className="bg-blue-600 text-white px-4 py-2 rounded" style={{ backgroundColor: '#5383c7' }} onClick={handleDownload}>
+      Download Proposal
+      </button>
+      </div>
     <div className="flex justify-center md:justify-start">
-    <img src="https://via.placeholder.com/600x350" alt="About us" className="hidden md:block rounded-md shadow-md about-img w-full md:w-auto"/>
+    <img src="/about.png" alt="About us" className="hidden md:block rounded-md shadow-md about-img w-full md:w-auto" />
     </div>
+
+    
   </div>
 </section>
 <div className='section-separator'></div>

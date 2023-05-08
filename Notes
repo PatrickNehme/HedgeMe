@@ -2,5 +2,11 @@ Features to add:
 
 -> Add check for TICKER (Using CoinGecko or similar API) (AddTrade)
 -> Auto update All Trades status (API Get Price)
--> Show live PNL for each Trades
--> Trading profit: Each trades had a size (%), we keep track of each trade PnL relative to the total size of the account (100%). To keep track: 10000$ invested. 1000$ into trading. End of month: Trading PNL% * $1000.
+-> Add AI chat for trades data using GPT3.5
+-> Notification system (Email and alert)
+-> AI chat 
+-> Live chat
+-> Support ticket
+-> Address scanner
+-> Alert system
+-> HedgeMe charity
