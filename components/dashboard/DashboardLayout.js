@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Cookie from 'js-cookie';
 import { FiUser, FiSettings, FiHelpCircle, FiLogOut } from 'react-icons/fi';
 import styles from './dashboard.module.css';
+import Head from 'next/head';
 
 const DashboardLayout = ({ children }) => {
   const router = useRouter();
@@ -14,6 +15,9 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-gray-100">
+      <Head>
+        <title>CLient Dashboard</title>
+      </Head>
       <div className="flex">
         {/* Sidebar */}
         <div className={`w-64 text-white py-6 px-4 min-h-screen flex flex-col ${styles.sidebar}`} style={{ backgroundColor: '#5383c7' }}>

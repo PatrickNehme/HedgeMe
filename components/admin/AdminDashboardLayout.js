@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Cookie from 'js-cookie';
+import Head from 'next/head';
 import {
   FiUser,
   FiSettings,
@@ -18,6 +19,7 @@ import { FiInfo } from 'react-icons/fi';
 
 import styles from '/components/admin/admin.module.css';
 
+
 const AdminDashboardLayout = ({ children }) => {
   const router = useRouter();
 
@@ -29,7 +31,11 @@ const AdminDashboardLayout = ({ children }) => {
   const [searchQuery, setSearchQuery] = React.useState('');
 
   return (
+    
     <div className="min-h-screen bg-gray-100">
+      <Head>
+        <title>Admin Dashboard</title>
+      </Head>
       <div className="flex">
         {/* Sidebar */}
         <div
