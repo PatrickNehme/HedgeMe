@@ -4,13 +4,18 @@ import Cookie from 'js-cookie';
 import Head from 'next/head';
 import {
   FiUser,
+  FiPercent,
   FiSettings,
   FiHelpCircle,
   FiLogOut,
+  FiBarChart2,
+  FiPlusCircle,
   FiTrendingUp,
   FiUserPlus,
   FiSearch,
   FiAlertTriangle,
+  FiBriefcase,
+  FiFile
 } from 'react-icons/fi';
 import { FiArchive } from 'react-icons/fi';
 import { FiActivity } from 'react-icons/fi';
@@ -25,7 +30,7 @@ const AdminDashboardLayout = ({ children }) => {
 
   const handleLogout = () => {
     Cookie.remove('token');
-    router.replace('/login');
+    router.replace('/admin/AdminLogin');
   };
 
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -43,7 +48,7 @@ const AdminDashboardLayout = ({ children }) => {
           style={{ backgroundColor: '#5383c7' }}
         >
           <div className="mb-8 text-lg font-semibold">
-            Welcome, test@admin.com
+            Administrator Dashboard
           </div>
           <div className="mb-8 relative">
             <input
@@ -72,6 +77,16 @@ const AdminDashboardLayout = ({ children }) => {
                   url: '/admin/AllUsers',
                 },
                 {
+                  label: 'Create Fund',
+                  icon: <FiPlusCircle className="inline-block mr-2" />,
+                  url: '/admin/CreateFund',
+                },
+                {
+                  label: 'All Funds',
+                  icon: <FiBriefcase className="inline-block mr-2" />,
+                  url: '/admin/AllFunds',
+                },
+                {
                   label: 'Add Trade',
                   icon: <FiTrendingUp className="inline-block mr-2" />,
                   url: '/admin/AddTrade',
@@ -87,6 +102,16 @@ const AdminDashboardLayout = ({ children }) => {
                   url: '/admin/TradingPerformance',
                 },
                 {
+                  label: 'Other Performance',
+                  icon: <FiPercent className="inline-block mr-2" />,
+                  url: '/admin/TiersPerformance',
+                },
+                {
+                  label: 'Weekly Performance',
+                  icon: <FiBarChart2 className="inline-block mr-2" />,
+                  url: '/admin/PerformanceReport',
+                },
+                {
                   label: 'Send Email',
                   icon: <FiMail className="inline-block mr-2" />,
                   url: '/admin/SendEmail',
@@ -100,6 +125,11 @@ const AdminDashboardLayout = ({ children }) => {
                   label: 'Alert',
                   icon: <FiAlertTriangle className="inline-block mr-2" />,
                   url: '/admin/Alert',
+                },
+                {
+                  label: 'Uploads',
+                  icon: <FiFile className="inline-block mr-2" />,
+                  url: '/admin/Uploads',
                 },
               ]
                 .filter(({ label }) =>

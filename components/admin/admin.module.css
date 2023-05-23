@@ -28,3 +28,11 @@
     text-align: center;
   }
   
+  .myTable .ant-table-cell {
+    width: 150px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  

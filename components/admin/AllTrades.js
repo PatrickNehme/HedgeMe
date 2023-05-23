@@ -298,7 +298,13 @@ const AllTrades = () => {
               }}
             />
           </Space>
-          <Table dataSource={trades} columns={columns} rowKey="_id" scroll={{ x: 'max-content' }} />
+          <Table 
+          dataSource={trades} 
+          columns={columns} 
+          rowKey="_id" 
+          scroll={{ x: 'max-content' }}
+          className={styles.myTable} 
+        />
         </Space>
       </div>
     );

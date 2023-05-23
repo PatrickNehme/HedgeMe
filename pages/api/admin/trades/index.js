@@ -15,7 +15,12 @@ const handler = async (req, res) => {
     try {
       const db = await connectToDb();
       const tradeModel = new Trade(db);
-      const trades = await tradeModel.trades.find(filters).toArray();
+      
+      // Retrieve all trades when no filters are provided
+      const trades = Object.keys(filters).length === 0 
+        ? await tradeModel.trades.find().toArray() 
+        : await tradeModel.trades.find(filters).toArray();
+      
       res.status(200).json(trades);
     } catch (error) {
       console.error('Error fetching trades:', error);

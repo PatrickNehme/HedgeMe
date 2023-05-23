@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import axios from 'axios';
 import AdminDashboardLayout from '../../components/admin/AdminDashboardLayout';
 import WithAuth from '../../components/WithAuth';
+import { useState } from 'react';
 
 
 const CreateUser = () => {

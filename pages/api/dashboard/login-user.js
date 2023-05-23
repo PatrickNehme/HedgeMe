@@ -25,7 +25,10 @@ export default async function handler(req, res) {
       }
 
       // Generate a JWT
-      const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ id: user._id, role: user.role, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+      // Set token in HttpOnly cookie
+      res.setHeader('Set-Cookie', `token=${token}; HttpOnly`);
 
       res.status(200).json({ token });
     } else {

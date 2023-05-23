@@ -9,9 +9,19 @@ const AllTradesPage = () => (
     <Head>
       <title>All Trades</title>
     </Head>
-    <AdminDashboardLayout>
-      <AllTrades />
-    </AdminDashboardLayout>
+    <div style={{ overflowX: 'auto' }}>
+      <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+        <AdminDashboardLayout style={{ flex: '0 0 auto' }}>
+          {/* Sidebar content */}
+        </AdminDashboardLayout>
+        <div style={{ flex: '1 1 auto', backgroundColor: '#f5f5f5' }}>
+          <div style={{ backgroundColor: 'white', padding: '20px' }}>
+            {/* Main content */}
+            <AllTrades />
+          </div>
+        </div>
+      </div>
+    </div>
   </>
 );
 

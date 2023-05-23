@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Cookie from 'js-cookie';
-import { FiUser, FiSettings, FiHelpCircle, FiLogOut } from 'react-icons/fi';
+import { FiUser, FiSettings, FiHelpCircle, FiLogOut, FiLock} from 'react-icons/fi';
 import styles from './dashboard.module.css';
 import Head from 'next/head';
 
@@ -16,13 +16,13 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Head>
-        <title>CLient Dashboard</title>
+        <title>Client Dashboard</title>
       </Head>
       <div className="flex">
         {/* Sidebar */}
         <div className={`w-64 text-white py-6 px-4 min-h-screen flex flex-col ${styles.sidebar}`} style={{ backgroundColor: '#5383c7' }}>
-          <div className="mb-8">
-            <div className="text-lg font-semibold">Welcome, user@example.com</div>
+        <div className="mb-4 ml-8 text-lg font-semibold">
+            Client Dashboard
           </div>
           <div className={`${styles.separator}`} />
           <div className="flex-1">
@@ -48,6 +48,14 @@ const DashboardLayout = ({ children }) => {
                 className={`w-full text-left py-2 px-4 hover:bg-blue-400 focus:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 ${styles.sidebarBtn}`}
               >
                 <FiHelpCircle className="inline-block mr-2" /> Support Tickets
+              </button>
+            </div>
+            <div className="mb-4">
+              <button
+                onClick={() => router.push('/dashboard/SecureDocumentExchange')}
+                className={`w-full text-left py-2 px-4 hover:bg-blue-400 focus:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 ${styles.sidebarBtn}`}
+              >
+                <FiLock className="inline-block mr-2" /> Secure File Exchange
               </button>
             </div>
             {/* Add more buttons as needed */}
