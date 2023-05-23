@@ -1,9 +1,10 @@
+import authMiddleware from '../authMiddleware';
 import fs from 'fs';
 import path from 'path';
 
 const uploadsDirectory = path.join(process.cwd(), "uploads");
 
-export default function handler(req, res) {
+const handler = async (req, res) => {
   if (req.method !== 'GET') {
     res.status(405).json({ message: 'Method not allowed' });
     return;
@@ -28,3 +29,4 @@ export default function handler(req, res) {
     res.status(200).json(fileList);
   });
 }
+export default authMiddleware(handler, 'admin');

@@ -1,6 +1,7 @@
 import { connectToDatabase } from '../../../db';
+import authMiddleware from '../authMiddleware';
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   if (req.method === 'PUT') {
     const { email, updatedAccountInfo } = req.body;
 
@@ -25,3 +26,6 @@ export default async (req, res) => {
     res.status(405).json({ message: 'Method not allowed' });
   }
 };
+
+export default authMiddleware(handler, 'user');
+

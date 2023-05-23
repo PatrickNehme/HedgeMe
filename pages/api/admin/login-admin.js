@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { connectToDb } = require('db');
 const { User } = require('models/User');
+import authMiddleware from '../authMiddleware';
+
 
 const handler = async (req, res) => {
   try {
@@ -43,5 +45,5 @@ const handler = async (req, res) => {
   }
 }
 
-export default handler;
+export default authMiddleware(handler, 'admin');
 

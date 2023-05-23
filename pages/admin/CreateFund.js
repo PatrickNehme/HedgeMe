@@ -141,4 +141,4 @@ const CreateFund = () => {
           
   
 
-export default CreateFund;
+export default WithAuth(CreateFund, 'admin');

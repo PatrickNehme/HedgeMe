@@ -1,7 +1,9 @@
 const { connectToDb } = require('../../../../db')
 const { Fund } = require('../../../../models/Fund');
+import authMiddleware from '../authMiddleware';
 
-export default async function handler(req, res) {
+
+const handler = async (req, res) => {
   if (req.method !== 'GET') {
     return res.status(405).end();
   }
@@ -17,3 +19,5 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+export default authMiddleware(handler, 'admin');

@@ -1,6 +1,8 @@
 import formidable from 'formidable';
 import fs from 'fs';
 import path from 'path';
+import authMiddleware from '../authMiddleware';
+
 
 export const config = {
   api: {
@@ -10,8 +12,8 @@ export const config = {
 
 const uploadDir = path.join(process.cwd(), "uploads");
 
-export default async function upload(req, res) {
-  if (req.method !== 'POST') {
+
+const handler = async (req, res) => {  if (req.method !== 'POST') {
     res.status(405).json({ message: 'Method not allowed' });
     return;
   }
@@ -45,3 +47,5 @@ export default async function upload(req, res) {
     });
   });
 }
+
+export default authMiddleware(handler, 'user');

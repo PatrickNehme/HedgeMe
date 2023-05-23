@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, InputNumber, Popconfirm, Input, Form} from 'antd';
 import { FiEdit, FiTrash2, FiCheck, FiX } from 'react-icons/fi';
+import WithAuth from '../../components/WithAuth';
 import axios from 'axios';
 import AdminDashboardLayout from '../../components/admin/AdminDashboardLayout';
 
@@ -239,4 +240,4 @@ const AllFunds = () => {
   );
 };
 
-export default AllFunds;
+export default WithAuth(AllFunds, 'admin');

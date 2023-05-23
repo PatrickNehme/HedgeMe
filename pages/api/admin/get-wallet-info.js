@@ -1,4 +1,5 @@
-export default async function handler(req, res) {
+import authMiddleware from '../authMiddleware';
+const handler = async (req, res) => {
   if (req.method === 'POST') {
     const { address } = req.body;
 
@@ -44,3 +45,6 @@ export default async function handler(req, res) {
     res.status(405).json({ message: 'Method not allowed' });
   }
 }
+
+export default authMiddleware(handler, 'admin');
+

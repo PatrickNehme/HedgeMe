@@ -1,12 +1,11 @@
 const { connectToDb } = require('../../../db');
 const { Fund }= require('../../../models/Fund'); 
 const { User } = require('../../../models/User'); 
+import authMiddleware from '../authMiddleware';
 
 
-
-
-export default async function handler(req, res) {
-    if (req.method !== 'POST') {
+const handler = async (req, res) => {
+  if (req.method !== 'POST') {
       return res.status(405).end();
     }
     
@@ -44,4 +43,6 @@ export default async function handler(req, res) {
     }
   }
   
+  export default authMiddleware(handler, 'admin');
+
 

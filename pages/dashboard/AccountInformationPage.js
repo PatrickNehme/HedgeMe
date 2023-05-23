@@ -5,6 +5,8 @@ import axios from 'axios';
 import Cookie from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
+import WithAuth from '../../components/WithAuth';
+
 
 const { Title } = Typography;
 
@@ -103,4 +105,4 @@ const AccountInformation = () => {
   );
 };
 
-export default AccountInformation;
+export default WithAuth(AccountInformationPage);

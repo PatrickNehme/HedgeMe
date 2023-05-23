@@ -1,7 +1,9 @@
 const { connectToDb } = require('../../../../db');
 const { Fund } = require('../../../../models/Fund');
+import authMiddleware from '../authMiddleware';
 
-export default async function handler(req, res) {
+
+const handler = async (req, res) => {
   const { id } = req.query;
   const db = await connectToDb();
   const fundModel = new Fund(db);
@@ -45,3 +47,5 @@ export default async function handler(req, res) {
     return res.status(405).end();
   }
 }
+
+export default authMiddleware(handler, 'admin');

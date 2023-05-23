@@ -1,5 +1,6 @@
 const { connectToDb } = require('../../../db');
 const { WeeklyPerformance } = require('../../../models/WeeklyPerformance');
+import authMiddleware from '../authMiddleware';
 
 async function handler(req, res) {
     const db = await connectToDb();
@@ -26,4 +27,5 @@ async function handler(req, res) {
     }
   }
   
-module.exports = handler;
+  export default authMiddleware(handler, 'user');
+

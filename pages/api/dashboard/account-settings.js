@@ -1,7 +1,8 @@
 import { connectToDb } from '../../../db';
 import { User } from '../../../models/User';
+import authMiddleware from '../authMiddleware';
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   const { currentEmail, newEmail, currentPassword } = req.body;
 
   const dbConnection = await connectToDb();
@@ -26,3 +27,5 @@ export default async (req, res) => {
 
   res.status(200).json({ message: 'Account settings updated successfully.' });
 };
+
+export default authMiddleware(handler, 'user');

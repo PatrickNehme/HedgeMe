@@ -3,9 +3,10 @@ import AdminDashboardLayout from '../../components/admin/AdminDashboardLayout';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import WithAuth from '../../components/WithAuth';
 import { Table, Button } from 'antd'; // ant design for a nice table
 
-export default function Uploads() {
+const Uploads = () => {
     const [fileList, setFileList] = useState([]);
 
   
@@ -62,3 +63,5 @@ export default function Uploads() {
 
     );
   }
+
+export default WithAuth(Uploads, 'admin');

@@ -1,6 +1,7 @@
 const axios = require('axios');
+import authMiddleware from '../authMiddleware';
 
-module.exports = async (req, res) => {
+const handler = async (req, res) => {
   if (req.method === 'POST') {
     const {email, subject, description, priority, type } = req.body;
     try {
@@ -35,3 +36,5 @@ module.exports = async (req, res) => {
     res.status(405).json({ message: `Method ${req.method} is not allowed` });
   }
 };
+
+export default authMiddleware(handler, 'user');

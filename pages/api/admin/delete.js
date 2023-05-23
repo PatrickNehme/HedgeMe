@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
+import authMiddleware from '../authMiddleware';
 
 const unlink = promisify(fs.unlink);
 
-export default async function deleteFile(req, res) {
+const handler = async (req, res) => {
   if (req.method !== 'DELETE') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -27,3 +28,6 @@ export default async function deleteFile(req, res) {
 
   res.status(204).end(); 
 }
+
+export default authMiddleware(handler, 'admin');
+

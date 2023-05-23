@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Table, Card, Row, Col} from 'antd';
 import { PieChart, Pie, Tooltip, BarChart, XAxis, YAxis, Bar, Legend, CartesianGrid, Label, Cell } from 'recharts';
 import AdminDashboardLayout from '../../components/admin/AdminDashboardLayout';
+import WithAuth from '../../components/WithAuth';
+
 
 function PerformanceReport() {
   const [loading, setLoading] = useState(true);
@@ -146,4 +148,4 @@ function PerformanceReport() {
   );
 }
 
-export default PerformanceReport;
+export default WithAuth(PerformanceReport, 'admin');

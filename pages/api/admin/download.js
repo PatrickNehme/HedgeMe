@@ -1,10 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
+import authMiddleware from '../authMiddleware';
+
 
 const readFile = promisify(fs.readFile);
 
-export default async function download(req, res) {
+const handler = async (req, res) => {
 
 
   const { filename } = req.query;
@@ -28,3 +30,6 @@ export default async function download(req, res) {
   res.setHeader('Content-Type', 'application/pdf'); 
   res.send(file);
 }
+
+export default authMiddleware(handler, 'admin');
+

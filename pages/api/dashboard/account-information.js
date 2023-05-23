@@ -1,6 +1,8 @@
 import { connectToDb } from '../../../db';
+import authMiddleware from '../authMiddleware';
 
-export default async (req, res) => {
+
+const handler = async (req, res) => {
   const { email } = req.body;
 
   const { db } = await connectToDb();
@@ -8,3 +10,5 @@ export default async (req, res) => {
 
   res.status(200).json({ user });
 };
+
+export default authMiddleware(handler, 'user');
