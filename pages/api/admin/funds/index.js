@@ -1,6 +1,6 @@
 const { connectToDb } = require('../../../../db')
 const { Fund } = require('../../../../models/Fund');
-import authMiddleware from '../authMiddleware';
+import authMiddleware from '../../authMiddleware';
 
 
 const handler = async (req, res) => {
@@ -20,4 +20,4 @@ const handler = async (req, res) => {
   }
 }
 
-export default authMiddleware(handler, 'admin');
+export default authMiddleware(handler);

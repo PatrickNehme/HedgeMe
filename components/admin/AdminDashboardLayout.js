@@ -42,7 +42,6 @@ const AdminDashboardLayout = ({ children }) => {
         <title>Admin Dashboard</title>
       </Head>
       <div className="flex">
-        {/* Sidebar */}
         <div
           className={`w-64 text-white py-6 px-4 min-h-screen flex flex-col ${styles.sidebar}`}
           style={{ backgroundColor: '#5383c7' }}
@@ -146,7 +145,6 @@ const AdminDashboardLayout = ({ children }) => {
                   </div>
                 ))}
             </div>
-            {/* Add more buttons as needed */}
           </div>
           <div className={`${styles.separator}`} />
           <div className={styles.logoutBtn}>
@@ -158,7 +156,6 @@ const AdminDashboardLayout = ({ children }) => {
             </button>
           </div>
         </div>
-        {/* Main content */}
         <div className="flex-1 p-8 text-gray-700">{children}</div>
       </div>
     </div>

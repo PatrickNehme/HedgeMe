@@ -45,5 +45,5 @@ const handler = async (req, res) => {
   }
 }
 
-export default authMiddleware(handler, 'admin');
+export default handler;
 

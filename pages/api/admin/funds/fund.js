@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { connectToDb } = require('../../../../db');
 const { Fund } = require('../../../../models/Fund');
 import Cookie from 'js-cookie';
-import authMiddleware from '../authMiddleware';
+import authMiddleware from '../../authMiddleware';
 
 
 
@@ -48,5 +48,5 @@ const handler = async (req, res) => {
   }
 }
 
-export default authMiddleware(handler, 'admin');
+export default authMiddleware(handler);
 

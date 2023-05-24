@@ -105,4 +105,4 @@ const AccountInformation = () => {
   );
 };
 
-export default WithAuth(AccountInformationPage);
+export default WithAuth(AccountInformation);

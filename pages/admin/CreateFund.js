@@ -1,6 +1,7 @@
 import axios from 'axios';
 import AdminDashboardLayout from '../../components/admin/AdminDashboardLayout';
 import { useState } from 'react';
+import WithAuth from '../../components/WithAuth';
 
 const CreateFund = () => {
   const [email, setEmail] = useState('');

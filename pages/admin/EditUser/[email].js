@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import AdminDashboardLayout from '/components/admin/AdminDashboardLayout';
 import axios from 'axios';
+import WithAuth from '../../../components/WithAuth';
 
 const EditUser = () => {
   const router = useRouter();
@@ -63,4 +64,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default WithAuth(EditUser, 'admin');

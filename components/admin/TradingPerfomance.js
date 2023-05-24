@@ -344,8 +344,7 @@ const TradingPerformance = () => {
         <BarChart data={chartData.longShortPerExchange}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="exchange" />
-        <YAxis tickCount={10} tickFormatter={value => Math.round(value)} /> {/* Use tickCount to set the number of ticks on the YAxis, and tickFormatter to format the YAxis ticks as integers */}
-        <Tooltip />
+        <YAxis tickCount={10} tickFormatter={value => Math.round(value)} /> 
         <Legend formatter={legendFormatter} />
         <Bar dataKey="long" stackId="a" fill="#0088FE" />
         <Bar dataKey="short" stackId="a" fill="#FF8042" />
